@@ -6,7 +6,7 @@ const Home = (props) => {
 
     const [resource, setResource] = useState("people");
 
-    const [selectId, setId] = useState("");
+    const [selectId, setId] = useState("1");
 
     const history = useHistory();
     console.log(history);
@@ -22,7 +22,7 @@ const Home = (props) => {
 
     return (
         <div>
-            <form >
+            <form onSubmit={handleSubmit}>
                 <h1>Home</h1>
                 <label >Search</label>
                 <select onChange={(e) => setResource(e.target.value)} value={resource}>
@@ -31,7 +31,7 @@ const Home = (props) => {
                 </select>
                 <label>ID</label>
                 <input onChange={(e) => setId(e.target.value)} type='number' value={selectId}></input>
-                <button type="submit" onClick={handleSubmit}>Search</button>
+                <button>Search</button>
             </form>
         </div>
     );

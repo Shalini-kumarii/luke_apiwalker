@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 
 const Planets = (props) => {
 
-    const [planet, setplanet] = useState('');
+    const [planet, setplanet] = useState({});
 
     const { resource, id } = useParams();
 
@@ -34,6 +34,9 @@ const Planets = (props) => {
 
     return (
         <div>
+        {
+            planet.name ?
+            <div>
             <h1>inside Planet</h1>
             <p style={{ fontWeight: "bold" }}>Name: {planet.name}</p>
             <div style={{ display: "inline" }}>
@@ -42,6 +45,10 @@ const Planets = (props) => {
             <p>Terrain: {planet.terrain}</p>
             <p>Surface Water: {planet.surface_water}</p>
             <p>Population:{planet.population}</p>
+            </div>
+            : <p>Loading...</p>
+
+        }
         </div>
     );
 }

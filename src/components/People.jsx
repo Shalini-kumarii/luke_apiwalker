@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 
 const People = (props) => {
 
-    const [people, setPeople] = useState('');
+    const [person, setperson] = useState({}); // because object comes back
 
     const { id } = useParams();
 
@@ -26,20 +26,27 @@ const People = (props) => {
             .then(res => {
                 console.log(res);
                 console.log(res.data)
-                setPeople(res.data)
+                setperson(res.data)
             })
             // axios wraps our res in a .data obj
-            .catch(err => console.log("These aren't the droids you're looking for"+err))
+            .catch(err => console.log(err))
     }
 
     return (
         <div>
-            <h1>inside people</h1>
-            <p style={{ fontWeight: "bold" }}>Name: {people.name}</p>
-            <p>Height: {people.height}</p>
-            <p>Mass: {people.mass}</p>
-            <p>Hair Color: {people.hair_color}</p>
-            <p>Skin Color:{people.skin_color}</p>
+            {
+                person.name ?
+                    <div>
+                        <h1>inside person</h1>
+                        <p style={{ fontWeight: "bold" }}>Name: {person.name}</p>
+                        <p>Height: {person.height}</p>
+                        <p>Mass: {person.mass}</p>
+                        <p>Hair Color: {person.hair_color}</p>
+                        <p>Skin Color:{person.skin_color}</p>
+                    </div> :
+                    <p> Loading ...</p>
+
+        }
         </div>
     );
 }
